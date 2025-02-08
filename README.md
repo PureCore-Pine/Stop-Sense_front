@@ -51,4 +51,4 @@ export default tseslint.config({
   },
 })
 ```
->>>>>>> a0f45a5 (Initial commit)
+
