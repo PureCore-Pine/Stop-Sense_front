@@ -1,0 +1,127 @@
+.contend{
+    width: 100%;
+    background-color: #666;
+}
+/* Main container */
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Header styling */
+.header {
+    font-size: 24px;
+    font-weight: normal;
+    color: #333;
+    margin: 0;
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Upload box styling */
+.upload-box {
+    width: 100%;
+    max-width: 800px;
+    background-color: #d3d3d3;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.upload-title {
+    font-size: 36px;
+    color: #000;
+    margin: 0 0 20px;
+}
+
+/* Smaller Video Preview Box */
+.video-preview {
+    width: 100%;
+    max-width: 400px;
+    /* Smaller width for preview */
+    height: 200px;
+    /* Smaller height for preview */
+    margin: 20px auto;
+    background-color: #ececec;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.preview-text {
+    font-size: 16px;
+    color: #666;
+}
+
+/* File Upload Button Styling */
+.file-upload {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #9e9e9e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-upload:hover {
+    background-color: #808080;
+}
+
+/* Outer box for Result Clip */
+.result-outer {
+    width: 100%;
+    max-width: 800px;
+    /* Wider outer box for Result Clip */
+    background-color: #9e9e9e;
+    /* Gray outer background */
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Outer box for Result Clip */
+.result-outer {
+    width: 100%;
+    max-width: 800px;
+    /* Wider outer box for Result Clip */
+    background-color: #d3d3d3;
+    /* Light gray outer border */
+    padding: 20px;
+    /* Padding to create the border effect */
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Result box styling (Inner box) */
+.result-box {
+    width: 100%;
+    max-width: 800px;
+    /* Wider inner box for Result Clip */
+    background-color: #fff7f7;
+    height: 515px;
+    /* Fixed height for Result Clip */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow-y: auto;
+    /* Allows scrolling if content exceeds height */
+}
+
+.result-text {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
