@@ -1,16 +1,19 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import HistoryPage from "./pages/HistoryPage";
 import Dashboard from "./pages/Dashboard";
-import UploadPage from "./pages/Upload";
-import History from "./pages/History";
+
+import LoginPage from "./pages/LoginPage";
+
 
 export default function MyRouter() {
     return (
         <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/upload' element={<UploadPage />} />
-            <Route path='/history' element={<History />} />
+
+            <Route path='/history' element={<HistoryPage />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+
         </Routes>
     )
 }
