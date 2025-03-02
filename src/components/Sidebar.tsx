@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { MdDashboard } from "react-icons/md";
-import { RiUploadCloudLine } from "react-icons/ri";
-import { BiHistory } from "react-icons/bi";
 import { HiMoon, HiSun } from "react-icons/hi";
 import { FiLogOut } from "react-icons/fi";
-import { FaBars } from "react-icons/fa";
 
 import { REDCOLOR } from "../assets/constant";
-
 import { navItem } from "../assets/dataSide";
+
 
 const Sidebar: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -48,7 +44,7 @@ const Sidebar: React.FC = () => {
         <div className={`flex items-center justify-center my-4 transition-all`} >
           {isExpanded ? "Stop Sense" : "S"}
         </div>
-        <hr className="border-gray-400" />
+  
       </button>
 
       {/* โลโก้ / ชื่อโปรเจค */}

@@ -4,6 +4,7 @@ import { allClips, ClipType } from '../models/ClipsData';
 import ViewButton from '../components/ViewButton';
 import DeleteButton from '../components/DeleteButton';
 import SearchClip from '../components/SearchClip';
+import { REDCOLOR } from '../assets/constant';
 
 const HistoryPage: React.FC = () => {
     const [clips, setClips] = useState<ClipType[]>(allClips);
@@ -22,7 +23,7 @@ const HistoryPage: React.FC = () => {
     );
 
     return (
-        <div className="min-h-screen w-full bg-gray-100 flex flex-col items-center">
+        <div className="min-h-screen w-full flex flex-col items-center">
             <div className="w-full max-w-screen-2xl bg-white p-6 rounded-lg shadow-lg">
 
                 {/* Title and Search Box */}
@@ -34,7 +35,8 @@ const HistoryPage: React.FC = () => {
                 {/* Table */}
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse bg-white shadow-md rounded-lg">
-                        <thead className="bg-red-700 text-white">
+                        {/* <thead className="bg-red-700 text-white"> */}
+                        <thead className={`bg-[${REDCOLOR}] text-white`}>
                             <tr>
                                 <th className="p-3 text-left">Clip Name</th>
                                 <th className="p-3 text-left">Upload Date</th>

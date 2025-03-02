@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+
+/* ตั้งค่าพื้นหลัง Dark Mode */
+:root {
+  --bg-color: #EEEEEE;
+  --text-color: #414141;
+}
+
+.dark {
+  --bg-color: #414141;
+  --text-color: #EEEEEE;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
