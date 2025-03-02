@@ -7,6 +7,10 @@ import { HiMoon, HiSun } from "react-icons/hi";
 import { FiLogOut } from "react-icons/fi";
 import { FaBars } from "react-icons/fa";
 
+import { REDCOLOR } from "../assets/constant";
+
+import { navItem } from "../assets/dataSide";
+
 const Sidebar: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [darkMode, setDarkMode] = useState(() => {
@@ -38,50 +42,50 @@ const Sidebar: React.FC = () => {
   }, []);
 
   return (
-    <div className={`h-screen bg-white text-black flex flex-col transition-all duration-300 shadow-lg border-r border-gray-300 ${isExpanded ? "w-64" : "w-16"}`}>
+    <div className={`h-screen bg-white text-black flex flex-col transition-all duration-300 shadow-lg border-r border-gray-300 ${isExpanded ? "w-64" : "w-16"}`} >
       {/* ปุ่ม Toggle Sidebar */}
       <button onClick={() => setIsExpanded(!isExpanded)} className="text-black text-3xl p-3 flex justify-center">
-        <FaBars />
+        <div className={`flex items-center justify-center my-4 transition-all`} >
+          {isExpanded ? "Stop Sense" : "S"}
+        </div>
+        <hr className="border-gray-400" />
       </button>
 
       {/* โลโก้ / ชื่อโปรเจค */}
-      <div className={`flex items-center justify-center my-4 transition-all ${isExpanded ? "text-2xl font-bold" : "hidden"}`}>
-        Stop Sense
-      </div>
+
       <hr className="border-gray-400" />
 
-      {/* เมนู */}
-      <ul className="flex-1 space-y-2 mt-4">
-        <li className={`flex items-center p-3 rounded-lg ${location.pathname === "/" ? "bg-[#A02A2E] text-white" : "hover:bg-gray-300"} ${isExpanded ? "" : "justify-center"}`}>
-          <Link to="/" className="flex items-center w-full">
-            <MdDashboard size={24} />
-            <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>Dashboard</span>
-          </Link>
-        </li>
-        <li className={`flex items-center p-3 rounded-lg ${location.pathname === "/upload" ? "bg-[#A02A2E] text-white" : "hover:bg-gray-300"} ${isExpanded ? "" : "justify-center"}`}>
-          <Link to="/upload" className="flex items-center w-full">
-            <RiUploadCloudLine size={24} />
-            <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>Upload</span>
-          </Link>
-        </li>
-        <li className={`flex items-center p-3 rounded-lg ${location.pathname === "/history" ? "bg-[#A02A2E] text-white" : "hover:bg-gray-300"} ${isExpanded ? "" : "justify-center"}`}>
-          <BiHistory size={24} />
-          <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>History</span>
-        </li>
 
-        {/* ✅ ปุ่ม Night Mode (ย้ายขึ้นมาในเมนู) */}
-        <li className="flex items-center p-3 rounded-lg hover:bg-gray-300 cursor-pointer" onClick={toggleDarkMode}>
+      <ul className="flex-1 space-y-2 mt-4">
+        {/* เมนู */}
+        {navItem.map((item) => (
+          <Link to={item.path} className={`flex items-center p-3 rounded-lg ${location.pathname === item.path ? `bg-[${REDCOLOR}] text-white` : "hover:bg-gray-300"} ${isExpanded ? "" : "justify-center"}`}>
+            <li key={item.id} className={isExpanded ? "flex items-center w-full" : ""}>
+              {item.icon}
+              <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>
+                {item.title}
+              </span>
+            </li>
+          </Link>
+        ))}
+
+
+        <li className={`flex items-center p-3 rounded-lg hover:bg-gray-300 cursor-pointer ${isExpanded ? "" : "justify-center"}`} onClick={toggleDarkMode}>
           {darkMode ? <HiSun size={24} className="text-yellow-500" /> : <HiMoon size={24} />}
+
           <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>
             {darkMode ? "Light Mode" : "Night Mode"}
           </span>
         </li>
+
       </ul>
 
       {/* ปุ่ม Log out */}
-      <button className="bg-[#A02A2E] text-white w-full py-3 flex items-center justify-center">
+      <button className={`bg-[${REDCOLOR}] text-white w-full py-3 flex items-center justify-center`}>
+
         <FiLogOut size={24} />
         <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>Log out</span>
+
       </button>
     </div>
   );
