@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.upload-box {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.upload-box p {
+    color: #999;
+    font-size: 16px;
+}
+
+.upload-box .browse-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.upload-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel, .upload-again {
+    padding: 10px 15px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.upload-again {
+    background-color: #EEEEEE;
+    color: #8C181C;
+    margin-left: auto;
+}
+.cancel{
+    color: #ffffff;
+    background-color: #8C181C;
+    margin-left: 77%;
+}
+
+
+
+.calculate, .deleteButton {
+    padding: 10px 15px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.deleteButton {
+    background-color: #EEEEEE;
+    color: #8C181C;
+    margin-left: auto;
+}
+
+.calculate{
+    color: #ffffff;
+    background-color: #8C181C;
+    margin-left: 74.5%;
+}
+
+.image-section {
+    margin-top: 20px;
+    position: relative;
+    text-align: center;
+}
+
+#canvas {
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid #ddd;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.input-fields {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-fields input {
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}

@@ -44,7 +44,7 @@ const Sidebar: React.FC = () => {
         <div className={`flex items-center justify-center my-4 transition-all`} >
           {isExpanded ? "Stop Sense" : "S"}
         </div>
-  
+
       </button>
 
       {/* โลโก้ / ชื่อโปรเจค */}
@@ -77,12 +77,12 @@ const Sidebar: React.FC = () => {
       </ul>
 
       {/* ปุ่ม Log out */}
-      <button className={`bg-[${REDCOLOR}] text-white w-full py-3 flex items-center justify-center`}>
-
-        <FiLogOut size={24} />
-        <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>Log out</span>
-
-      </button>
+      <Link to='/login'>
+        <button className={`bg-[${REDCOLOR}] text-white w-full py-3 flex items-center justify-center`}>
+          <FiLogOut size={24} />
+          <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>Log out</span>
+        </button>
+      </Link>
     </div>
   );
 };
