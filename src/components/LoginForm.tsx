@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { REDCOLOR, WHITECOLOR } from '../assets/constant';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 
 interface FormData {
   email: string;
@@ -24,11 +24,12 @@ const LoginForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Login Submitted:', formData);
+    redirect('/history')
     // API call to authenticate the user
   };
 
   return (
-    <div className={`w-full max-w-lg bg-[${WHITECOLOR}] rounded-lg shadow-2xl p-6 space-y-2 opacity-78`}>
+    <div className={`w-full max-w-lg bg-[${REDCOLOR}] rounded-lg shadow-2xl p-6 space-y-2 opacity-78`}>
       <h2 className={`text-3xl  text-center text-[${REDCOLOR}] font-black font-sans`}>Your Welcome</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">

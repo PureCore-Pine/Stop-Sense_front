@@ -55,7 +55,7 @@ const Sidebar: React.FC = () => {
       <ul className="flex-1 space-y-2 mt-4">
         {/* เมนู */}
         {navItem.map((item) => (
-          <Link to={item.path} className={`flex items-center p-3 rounded-lg ${location.pathname === item.path ? `bg-[${REDCOLOR}] text-white` : "hover:bg-gray-300"} ${isExpanded ? "" : "justify-center"}`}>
+          <Link to={item.path} className={`flex items-center p-3 rounded-lg ${location.pathname === item.path ? `bg-[#A02A2E] text-white` : "hover:bg-gray-300"} ${isExpanded ? "" : "justify-center"}`}>
             <li key={item.id} className={isExpanded ? "flex items-center w-full" : ""}>
               {item.icon}
               <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>
