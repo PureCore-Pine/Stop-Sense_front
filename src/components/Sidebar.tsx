@@ -38,7 +38,7 @@ const Sidebar: React.FC = () => {
   }, []);
 
   return (
-    <div className={`h-screen bg-white text-black flex flex-col transition-all duration-300 shadow-lg border-r border-gray-300 ${isExpanded ? "w-64" : "w-16"}`} >
+    <div className={`fixed top-0 left-0 h-full bg-white text-black flex flex-col transition-all duration-300 shadow-lg border-r border-gray-300 ${isExpanded ? "w-64" : "w-16"}`}>
       {/* ปุ่ม Toggle Sidebar */}
       <button onClick={() => setIsExpanded(!isExpanded)} className="text-black text-3xl p-3 flex justify-center">
         <div className={`flex items-center justify-center my-4 transition-all`} >
