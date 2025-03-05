@@ -38,15 +38,19 @@ export default function MyRouter() {
         </div> */}
 
       <Routes>
-        {/* Pages ที่มี Layout */}
-        <Route path="/" element={<Layout><></></Layout>} />
-        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
-        <Route path="/history" element={<Layout><HistoryPage /></Layout>} />
-        <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
+        <Route element={<ProtectedRoutes />}>
+          {/* Pages ที่มี Layout */}
+          <Route path="/" element={<UploadAndDraw />} />
+          <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+          <Route path="/history" element={<Layout><HistoryPage /></Layout>} />
+          <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
 
-        {/* หน้า Login และ Register ไม่มี Layout */}
+          {/* หน้า Login และ Register ไม่มี Layout */}
+          <Route path="/register" element={<RegisterPage />} />
+
+        </Route>
+
         <Route path="/login" element={<UploadAndDraw />} />
-        <Route path="/register" element={<RegisterPage />} />
 
 
       </Routes>

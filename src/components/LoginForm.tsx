@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
-import { REDCOLOR, WHITECOLOR } from '../assets/constant';
-import { Link, redirect } from 'react-router-dom';
-
+import { API_IP, REDCOLOR, WHITECOLOR } from '../assets/constant';
+import { Link, Navigate, redirect } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 interface FormData {
-  email: string;
+  username: string;
   password: string;
 }
 
 const LoginForm: React.FC = () => {
+  const navigate = useNavigate(); // Initialize navigation
+
   const [formData, setFormData] = useState<FormData>({
-    email: '',
+    username: '',
     password: ''
   });
 
@@ -21,9 +24,30 @@ const LoginForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login Submitted:', formData);
+
+    const data = {
+      username: formData.username,
+      password: formData.password
+    }
+    
+    await axios.post(API_IP + '/login', data)
+      .then(res => {
+        console.log({ res })
+        localStorage.setItem('user_id', res.data.user_id);
+        // Redirect to /dashboard after successful login
+        navigate("/dashboard");
+        console.log('user_id:', localStorage.getItem('user_id'))
+      })
+      .catch(err => {
+        console.log({ err })
+        alert(err.response?.data?.message || "Login failed");
+
+      })
+
+
+    console.log('Login Submitted:', data);
     redirect('/history')
     // API call to authenticate the user
   };
@@ -35,14 +59,14 @@ const LoginForm: React.FC = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
             onChange={handleChange}
             className="w-full p-1.5 pl-5 mt-10 rounded-lg shadow-sm bg-white"
             required
-            placeholder="Email"
+            placeholder="Username"
           />
         </div>
 
@@ -64,10 +88,10 @@ const LoginForm: React.FC = () => {
         </div> */}
 
         <button type="submit" className={`w-full py-2 mt-10 mb-10 text-white bg-[${REDCOLOR}] rounded-full hover:bg-gray-400 hover:text-[${REDCOLOR}]`}>
-          <Link to='/dashboard'>Sign in</Link>
+          Sign in
         </button>
 
-          {/* <div className="text-center">
+        {/* <div className="text-center">
             <span className={`text-sm text-[${REDCOLOR}]`}>or continue with</span>
           </div> */}
 

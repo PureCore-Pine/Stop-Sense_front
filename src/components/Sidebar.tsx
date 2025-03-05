@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 
-import { REDCOLOR } from "../assets/constant";
+import { API_IP, REDCOLOR } from "../assets/constant";
 import { navItem } from "../assets/dataSide";
+import axios from "axios";
+
+import { useNavigate } from "react-router-dom";
+
 
 const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
   isExpanded,
   toggleSidebar,
 }) => {
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize navigation
+
 
   // ✅ Night Mode (ถูกคอมเมนต์ไว้เพื่อเปิดใช้งานภายหลัง)
   /*
@@ -38,11 +44,32 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
   }, [darkMode]);
   */
 
+  const handleLogout = async () => {
+
+    const user_id = localStorage.getItem('user_id');
+
+    const data = {
+      user_id
+    }
+
+    await axios.put(API_IP + '/logout', data)
+      .then(res => {
+        console.log('res:', res)
+        localStorage.removeItem('user_id')
+        navigate("/");
+
+      })
+      .catch(err => {
+        console.log('err:', err)
+        alert(err.response?.data?.message || "logout failed");
+
+      })
+  }
+
   return (
     <div
-      className={`fixed top-0 left-0 h-full bg-white text-black flex flex-col transition-all duration-300 shadow-lg border-r border-gray-300 ${
-        isExpanded ? "w-64" : "w-16"
-      }`}
+      className={`fixed top-0 left-0 h-full bg-white text-black flex flex-col transition-all duration-300 shadow-lg border-r border-gray-300 ${isExpanded ? "w-64" : "w-16"
+        }`}
     >
       {/* ปุ่ม Toggle Sidebar */}
       <button
@@ -62,11 +89,10 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
           <Link
             to={item.path}
             key={item.id}
-            className={`flex items-center p-3 rounded-lg ${
-              location.pathname === item.path
-                ? `bg-[#A02A2E] text-white`
-                : "hover:bg-gray-300"
-            } ${isExpanded ? "" : "justify-center"}`}
+            className={`flex items-center p-3 rounded-lg ${location.pathname === item.path
+              ? `bg-[#A02A2E] text-white`
+              : "hover:bg-gray-300"
+              } ${isExpanded ? "" : "justify-center"}`}
           >
             <li className={isExpanded ? "flex items-center w-full" : ""}>
               {item.icon}
@@ -96,14 +122,14 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
       </ul>
 
       {/* ปุ่ม Log out */}
-      <Link to="/login">
-        <button className={`bg-[${REDCOLOR}] text-white w-full py-3 flex items-center justify-center`}>
-          <FiLogOut size={24} />
-          <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>
-            Log out
-          </span>
-        </button>
-      </Link>
+
+      <button onClick={() => handleLogout()} className={`bg-[${REDCOLOR}] text-white w-full py-3 flex items-center justify-center`}>
+        <FiLogOut size={24} />
+        <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>
+          Log out
+        </span>
+      </button>
+
     </div>
   );
 };

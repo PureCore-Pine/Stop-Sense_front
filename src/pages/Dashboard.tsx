@@ -1,15 +1,56 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashboardCard from "../components/DashboardCard";
-
-const dashboardData = [
-  { title: "จำนวน Conflict", value: 58, unit: "ครั้ง", size: "col-span-2 row-span-2" },
-  { title: "จำนวนผู้ใช้งานวันนี้", value: 130, unit: "ราย", size: "col-span-1 row-span-2" },
-  { title: "จำนวนคลิปที่อัพโหลด", value: 12, unit: "คลิป", size: "col-span-full row-span-1" }, // ✅ ปรับให้เต็มความกว้าง
-];
-
+import { API_IP } from "../assets/constant";
 
 const Dashboard: React.FC = () => {
+  const user_id = localStorage.getItem('user_id');
+  console.log('userID:', user_id);
+
+  // ✅ Use State for API data
+  const [conflictCount, setConflictCount] = useState(0);
+  const [clipsCount, setClipsCount] = useState(0);
+  const [activeUser, setActiveUser] = useState(0);
+
+  // ✅ Fetch data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${API_IP}/dataOverView/${user_id}`);
+        console.log("API Response:", res.data);
+        setConflictCount(res.data.data.conflictCount);
+        setClipsCount(res.data.data.clipsCount);
+        setActiveUser(res.data.data.activeUser);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    };
+
+    fetchData();
+  }, [user_id]); // Runs when `user_id` changes
+
+  // ✅ Use state values in dashboard data
+  const dashboardData = [
+    {
+      title: "จำนวน Conflict",
+      value: conflictCount,
+      unit: "ครั้ง",
+      size: "col-span-2 row-span-2"
+    },
+    {
+      title: "จำนวนผู้ใช้งานวันนี้",
+      value: activeUser,
+      unit: "ราย",
+      size: "col-span-1 row-span-2"
+    },
+    {
+      title: "จำนวนคลิปที่อัพโหลด",
+      value: clipsCount,
+      unit: "คลิป",
+      size: "col-span-full row-span-1"
+    }
+  ];
+
   return (
     <div className="w-full min-h-screen p-6 pt-10 flex justify-center">
       <div className="max-w-screen-lg w-full">
@@ -20,9 +61,9 @@ const Dashboard: React.FC = () => {
           {dashboardData.map((item, index) => (
             <DashboardCard key={index} {...item} />
           ))}
+
         </div>
       </div>
-
     </div>
   );
 };
