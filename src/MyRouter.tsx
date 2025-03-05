@@ -5,6 +5,7 @@ import UploadPage from './pages/UploadPage';
 import UploadAndDraw from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Layout from './components/Layout';
+import ViewClip from './pages/Viewclip';
 
 import TestPage from './pages/Test'
 import ProtectedRoutes from "./utils/ProtectedRoutes";
@@ -44,16 +45,12 @@ export default function MyRouter() {
           <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
           <Route path="/history" element={<Layout><HistoryPage /></Layout>} />
           <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
-
+          <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
+          <Route path="/viewclip" element={<Layout><ViewClip /></Layout>} />
           {/* หน้า Login และ Register ไม่มี Layout */}
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/register" element={<RegisterPage />} /></Route>
 
-        </Route>
-
-        <Route path="/login" element={<UploadAndDraw />} />
-
-
-      </Routes>
+        <Route path="/login" element={<UploadAndDraw />} /></Routes>
     </>
 
 
