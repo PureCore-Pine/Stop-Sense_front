@@ -29,8 +29,8 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className={`w-full max-w-lg bg-[${REDCOLOR}] rounded-lg shadow-2xl p-6 space-y-2 opacity-78`}>
-      <h2 className={`text-3xl  text-center text-[${REDCOLOR}] font-black font-sans`}>Your Welcome</h2>
+    <div className={`w-full max-w-lg bg-gray-200 rounded-lg shadow-2xl p-6 space-y-2 opacity-78`}>
+      <h2 className={`text-3xl  text-center text-[${WHITECOLOR}] font-black font-sans`}>Your Welcome</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -63,18 +63,18 @@ const LoginForm: React.FC = () => {
           <a href="#" className={`text-sm text-[${REDCOLOR}]`}>Forgot password?</a>
         </div> */}
 
-        <button type="submit" className={`w-full py-2 mt-10 mb-10 text-white bg-[${REDCOLOR}] rounded-full hover:bg-[#FFFFFF] hover:text-[${REDCOLOR}]`}>
-          Sign In
+        <button type="submit" className={`w-full py-2 mt-10 mb-10 text-white bg-[${REDCOLOR}] rounded-full hover:bg-gray-400 hover:text-[${REDCOLOR}]`}>
+          <Link to='/dashboard'>Sign in</Link>
         </button>
 
-        <div className="text-center">
-          <span className={`text-sm text-[${REDCOLOR}]`}>or continue with</span>
-        </div>
+          {/* <div className="text-center">
+            <span className={`text-sm text-[${REDCOLOR}]`}>or continue with</span>
+          </div> */}
 
-        <button className={`w-full py-1.5 mt-10 rounded-lg flex justify-center bg-white text-[${REDCOLOR}] hover:bg-[${REDCOLOR}] hover:text-white`} type='submit'>
+        {/* <button className={`w-full py-1.5 mt-10 rounded-lg flex justify-center bg-white text-[${REDCOLOR}] hover:bg-[${REDCOLOR}] hover:text-red-500`} type='submit'>
           <FcGoogle className="mr-2 text-2xl" />
           Google
-        </button>
+        </button> */}
 
 
       </form>

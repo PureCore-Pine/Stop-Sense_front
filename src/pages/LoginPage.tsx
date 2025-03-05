@@ -16,12 +16,12 @@ const App: React.FC = () => {
         </Link>
 
         <Link to='#'>
-          <button className={`px-8 py-1 bg-white text-[${REDCOLOR}] rounded-full hover:bg-[${REDCOLOR}] hover:text-white`}>
-            Register
+          <button className={`px-8 py-1 bg-white text-[${REDCOLOR}] rounded-full hover:bg-[${REDCOLOR}] hover:text-red-500`}>
+            <Link to='/register'>Register</Link>
           </button>
         </Link>
       </div>
-      <Background>
+      <Background backgroundColor={REDCOLOR}>
         <LoginForm />
       </Background>
     </div>

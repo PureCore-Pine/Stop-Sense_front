@@ -1,40 +1,23 @@
-import { Route, Routes } from "react-router-dom";
-import HistoryPage from "./pages/HistoryPage";
-import Dashboard from "./pages/Dashboard";
-
-import LoginPage from "./pages/LoginPage";
-
-import Sidebar from "./components/Sidebar";
-import { Link, useLocation } from "react-router-dom";
-import UploadPage from "./pages/UploadPage";
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import HistoryPage from './pages/HistoryPage';
+import UploadPage from './pages/UploadPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import Layout from './components/Layout';
 
 export default function MyRouter() {
-    const windowHight = window.innerHeight;
-    const windowWidth = window.innerHeight;
+  return (
+    <Routes>
+      {/* Pages ที่มี Layout */}
+      <Route path="/" element={<Layout></Layout>} />
+      <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+      <Route path="/history" element={<Layout><HistoryPage /></Layout>} />
+      <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
 
-    const location = useLocation(); // ตรวจจับ path ปัจจุบัน
-
-    const onLogin = location.pathname !== '/login';
-
-    return (
-        <div style={{ display: 'flex', }}>
-            {onLogin ? <Sidebar /> : ''}
-
-
-
-            <div style={{ marginTop: onLogin ? windowHight * 0.1 : 0, width: '100%' }}>
-                <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path='/history' element={<HistoryPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/upload" element={<UploadPage />} />
-                    <Route path="/testSide" element={<Sidebar />} />
-
-                </Routes>
-            </div>
-        </div>
-
-
-    )
+      {/* หน้า Login และ Register ไม่มี Layout */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+    </Routes>
+  );
 }

@@ -13,19 +13,19 @@ interface NavItem {
 export const navItem: NavItem[] = [
   {
     id: 1,
-    icon: <FaChartPie size={24} />,
+    icon: <FaChartPie size={32} style={{padding: '4'}}/>,
     title: 'Dashboard',
     path: '/dashboard',
   },
   {
     id: 2,
-    icon: <MdOutlineFileUpload size={24}/>,
+    icon: <MdOutlineFileUpload size={32}/>,
     title: 'Upload',
     path: '/upload',
   },
   {
     id: 3,
-    icon: <FaHistory size={24}/>,
+    icon: <FaHistory size={32} style={{padding: '4'}}/>,
     title: 'History',
     path: '/history',
   },
