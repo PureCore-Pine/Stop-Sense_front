@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { API_IP } from '../assets/constant';
+import axios from 'axios';
+import {  useNavigate } from 'react-router-dom';
 
 interface FormData {
   email: string;
@@ -8,6 +11,8 @@ interface FormData {
 }
 
 const RegisterForm: React.FC = () => {
+  const navigate = useNavigate(); // Initialize navigation
+
   const [formData, setFormData] = useState<FormData>({
     email: '',
     username: '',
@@ -22,8 +27,32 @@ const RegisterForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const data = {
+      email: formData.email,
+      username: formData.username,
+      password: formData.password,
+      confirmPassword: formData.confirmPassword
+
+    }
+
+
+    await axios.post(API_IP + '/register', data)
+      .then(res => {
+        console.log({ res })
+        localStorage.setItem('user_id', res.data.user_id);
+
+        navigate('/login')
+      })
+
+      .catch(err => {
+        console.log({ err })
+        alert(err.response?.data.message || "Register failed")
+      })
+
+
     console.log('Register Submitted:', formData);
   };
 
