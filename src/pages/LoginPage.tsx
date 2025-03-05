@@ -5,7 +5,7 @@ import { REDCOLOR } from "../assets/constant";
 import { Link } from "react-router-dom";
 
 
-const App: React.FC = () => {
+const Login: React.FC = () => {
   return (
     <div className="relative">
       <div className="absolute top-4 right-4 space-x-4">
@@ -28,4 +28,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Login;

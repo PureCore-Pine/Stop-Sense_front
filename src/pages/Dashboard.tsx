@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import DashboardCard from "../components/DashboardCard";
 
@@ -6,6 +7,7 @@ const dashboardData = [
   { title: "จำนวนผู้ใช้งานวันนี้", value: 130, unit: "ราย", size: "col-span-1 row-span-2" },
   { title: "จำนวนคลิปที่อัพโหลด", value: 12, unit: "คลิป", size: "col-span-full row-span-1" }, // ✅ ปรับให้เต็มความกว้าง
 ];
+
 
 const Dashboard: React.FC = () => {
   return (
@@ -20,6 +22,7 @@ const Dashboard: React.FC = () => {
           ))}
         </div>
       </div>
+
     </div>
   );
 };
