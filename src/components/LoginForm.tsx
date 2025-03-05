@@ -4,6 +4,8 @@ import { API_IP, REDCOLOR, WHITECOLOR } from '../assets/constant';
 import { Link, Navigate, redirect } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+
+
 interface FormData {
   username: string;
   password: string;
@@ -48,8 +50,7 @@ const LoginForm: React.FC = () => {
 
 
     console.log('Login Submitted:', data);
-    redirect('/history')
-    // API call to authenticate the user
+
   };
 
   return (

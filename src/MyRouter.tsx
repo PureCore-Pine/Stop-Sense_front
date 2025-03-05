@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import HistoryPage from './pages/HistoryPage';
 import UploadPage from './pages/UploadPage';
@@ -11,9 +11,6 @@ import TestPage from './pages/Test'
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 export default function MyRouter() {
-  const location = useLocation(); // ตรวจจับ path ปัจจุบัน
-
-  const onLogin = location.pathname !== '/login';
 
 
   return (
@@ -48,9 +45,20 @@ export default function MyRouter() {
           <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
           <Route path="/viewclip" element={<Layout><ViewClip /></Layout>} />
           {/* หน้า Login และ Register ไม่มี Layout */}
+<<<<<<< HEAD
           <Route path="/register" element={<RegisterPage />} /></Route>
 
         <Route path="/login" element={<UploadAndDraw />} /></Routes>
+=======
+
+        </Route>
+
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<UploadAndDraw />} />
+
+
+      </Routes>
+>>>>>>> 46288ca1f23f376c6b5db4a58e72183af11b9836
     </>
 
 

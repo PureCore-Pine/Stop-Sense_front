@@ -6,7 +6,7 @@ import axios from 'axios';
 import { API_IP } from '../assets/constant';
 
 type ClipType = {
-  clip_id: number;
+  clip_id: string;
   number_conflict: number;
   name: string;
   upload_date: string;
@@ -16,9 +16,9 @@ const HistoryPage: React.FC = () => {
   const [clips, setClips] = useState<ClipType[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
+  const user_id = localStorage.getItem('user_id');
   useEffect(() => {
     const fetchData = async () => {
-      const user_id = localStorage.getItem('user_id');
       if (!user_id) {
         console.warn("No user_id found in localStorage");
         return;
@@ -40,13 +40,28 @@ const HistoryPage: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleView = (clip_id: number) => {
+  const handleView = (clip_id: string) => {
     alert(`Viewing clip with ID: ${clip_id}`);
   };
 
-  const handleDelete = (clip_id: number) => {
-    setClips((prevClips) => prevClips.filter((clip) => clip.clip_id !== clip_id));
+  const handleDelete = async (clip_id: string) => {
+    try {
+      await axios.delete(`${API_IP}/deleteClip`, {
+        data: { clip_id }, // Correct way to send data in DELETE request
+      })
+        .then(res => {
+          console.log("Delete Response:", res.data);
+          setClips((prevClips) => prevClips.filter((clip) => clip.clip_id !== clip_id));
+        })
+        .catch(err => {
+          console.warn("Failed to delete clip:", err.data.message);
+
+        })
+    } catch (error) {
+      console.error("Error deleting clip:", error);
+    }
   };
+
 
   const filteredClips = clips.filter((clip) =>
     clip.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -73,21 +88,31 @@ const HistoryPage: React.FC = () => {
               </tr>
             </thead>
 
-            <tbody>
-              {filteredClips.map((clip) => (
-                <tr key={clip.clip_id} className="border-b hover:bg-gray-100 transition">
-                  <td className="p-3">{clip.name}</td>
-                  <td className="p-3">{clip.upload_date}</td>
-                  <td className={`p-3 text-center ${clip.number_conflict > 10 ? 'text-red-600' : 'text-black'}`}>
-                    {clip.number_conflict}
-                  </td>
-                  <td className="p-3 flex justify-center gap-3">
-                    <ViewButton onClick={() => handleView(clip.clip_id)} />
-                    <DeleteButton onClick={() => handleDelete(clip.clip_id)} />
+            {filteredClips.length === 0 ?
+              <tbody>
+                <tr>
+                  <td colSpan={4} className="text-center p-6">
+                    <h1 className="text-2xl font-bold text-gray-500">No data</h1>
                   </td>
                 </tr>
-              ))}
-            </tbody>
+              </tbody>
+              :
+              <tbody>
+                {filteredClips.map((clip) => (
+                  <tr key={clip.clip_id} className="border-b hover:bg-gray-100 transition">
+                    <td className="p-3">{clip.name}</td>
+                    <td className="p-3">{clip.upload_date}</td>
+                    <td className={`p-3 text-center ${clip.number_conflict > 10 ? 'text-red-600' : 'text-black'}`}>
+                      {clip.number_conflict}
+                    </td>
+                    <td className="p-3 flex justify-center gap-3">
+                      <ViewButton onClick={() => handleView(clip.clip_id)} />
+                      <DeleteButton onClick={() => handleDelete(clip.clip_id)} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            }
           </table>
         </div>
       </div>

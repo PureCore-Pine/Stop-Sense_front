@@ -1,5 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+
 import '../styles/UploadPage.css'
+import axios from 'axios';
+import { API_IP } from '../assets/constant';
+
+
 interface Point {
   x: number;
   y: number;
@@ -9,11 +17,24 @@ interface Polygon {
   points: Point[];
 }
 
+interface FormData {
+  name: string;
+  width: number;
+  distance: number;
+  description: string;
+}
+
 const UploadAndDraw: React.FC = () => {
+  const navigate = useNavigate(); // Initialize navigation
+  const user_id = localStorage.getItem('user_id');
+
+
   const [polygons, setPolygons] = useState<Polygon[]>([]);
   const [currentPoints, setCurrentPoints] = useState<Point[]>([]);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [markingValues, setMarkingValues] = useState<string[]>(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
+  // const [markingValues, setMarkingValues] = useState<string[]>(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
+  const [markingValues, setMarkingValues] = useState<number[][]>([[0, 0], [0, 0], [0, 0], [0, 0]]);
+
   const [videoDimensions, setVideoDimensions] = useState<{ width: number, height: number }>({ width: 0, height: 0 });
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -54,7 +75,8 @@ const UploadAndDraw: React.FC = () => {
       // Reset drawing state when uploading a new video
       setCurrentPoints([]);
       setPolygons([]);
-      setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
+      // setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
+      setMarkingValues([]);
 
       // Clear the file input value to allow re-uploading the same file
       e.target.value = '';
@@ -129,19 +151,12 @@ const UploadAndDraw: React.FC = () => {
 
   // Update input fields with the coordinates of the clicked points
   const updateInputFields = (points: Point[]) => {
-    const newMarkingValues = [...markingValues];
-    if (points.length >= 1) {
-      newMarkingValues[0] = `x1,y1 (${Math.round(points[0].x)}, ${Math.round(points[0].y)})`;
+    const newMarkingValues = points.map((point) => [Math.round(point.x), Math.round(point.y)]);
+
+    while (newMarkingValues.length < 4) {
+      newMarkingValues.push([0, 0]); // Ensure it always has 4 values
     }
-    if (points.length >= 2) {
-      newMarkingValues[1] = `x2,y2 (${Math.round(points[1].x)}, ${Math.round(points[1].y)})`;
-    }
-    if (points.length >= 3) {
-      newMarkingValues[2] = `x3,y3 (${Math.round(points[2].x)}, ${Math.round(points[2].y)})`;
-    }
-    if (points.length >= 4) {
-      newMarkingValues[3] = `x4,y4 (${Math.round(points[3].x)}, ${Math.round(points[3].y)})`;
-    }
+
     setMarkingValues(newMarkingValues);
   };
 
@@ -168,9 +183,50 @@ const UploadAndDraw: React.FC = () => {
     setVideoUrl(null);
     setCurrentPoints([]);
     setPolygons([]);
-    setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
+    // setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
+    setMarkingValues([]);
+
     setVideoDimensions({ width: 0, height: 0 });
   };
+
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    width: 0,
+    distance: 0,
+    description: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleCalculate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const data = {
+      user_id: user_id,
+      name: formData.name,
+      width: formData.width,
+      distance: formData.distance,
+      point: [
+        markingValues[0], markingValues[1],
+        markingValues[2], markingValues[3]
+      ],
+      descripton: formData.description
+    }
+    // console.log({ data })
+    await axios.post(API_IP + '/uploadClip', data)
+      .then(res => {
+        console.log({ res })
+        alert(res?.data.message || 'Uploaded')
+      })
+      .catch(err => {
+        console.warn({err})
+        alert(err.response?.data.message)
+      })
+  }
 
   return (
     <div>
@@ -229,20 +285,30 @@ const UploadAndDraw: React.FC = () => {
           </div>
 
           <div className="upload-buttons">
-            <button className="calculate">Calculate</button>
+            <button className="calculate" onClick={handleCalculate}>Calculate</button>
             <button className="clear" onClick={handleClearDrawing}>Clear Drawing</button>
           </div>
 
           <div className="form">
             <div className="input-fields">
+              <input type="text" id="clipName" placeholder="Name" value={formData.name} name='name' onChange={handleChange} required />
+
               <input type="text" id="marking" placeholder="marking (x1,y1)" value={markingValues[0]} readOnly />
               <input type="text" id="marking2" placeholder="marking (x2,y2)" value={markingValues[1]} readOnly />
               <input type="text" id="marking3" placeholder="marking (x3,y3)" value={markingValues[2]} readOnly />
               <input type="text" id="marking4" placeholder="marking (x4,y4)" value={markingValues[3]} readOnly />
-              <input type="text" id="width" placeholder="width" />
-              <input type="text" id="distance" placeholder="distance" />
+
+              <input type="text" id="width" placeholder="width" value={formData.width} name='width' onChange={handleChange} required />
+              <input type="text" id="distance" placeholder="distance" value={formData.distance} name='distance' onChange={handleChange} required />
             </div>
-            <textarea id="description" placeholder="description"></textarea>
+
+            <textarea
+              id="description"
+              placeholder="description"
+              value={formData.description}
+              name="description"
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}>
+            </textarea>
           </div>
         </div>
       )}
