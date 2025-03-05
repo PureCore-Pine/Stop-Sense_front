@@ -51,8 +51,6 @@ const HistoryPage: React.FC = () => {
     // navigate('/viewclip', { state: { clip_id } });
 
 
-
-
   };
 
   const handleDelete = async (clip_id: string) => {
