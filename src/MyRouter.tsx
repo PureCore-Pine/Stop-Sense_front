@@ -43,13 +43,8 @@ export default function MyRouter() {
           <Route path="/history" element={<Layout><HistoryPage /></Layout>} />
           <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
           <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
-          <Route path="/viewclip" element={<Layout><ViewClip /></Layout>} />
+          <Route path="/viewclip/:clip_id" element={<Layout><ViewClip /></Layout>} />
           {/* หน้า Login และ Register ไม่มี Layout */}
-<<<<<<< HEAD
-          <Route path="/register" element={<RegisterPage />} /></Route>
-
-        <Route path="/login" element={<UploadAndDraw />} /></Routes>
-=======
 
         </Route>
 
@@ -58,7 +53,6 @@ export default function MyRouter() {
 
 
       </Routes>
->>>>>>> 46288ca1f23f376c6b5db4a58e72183af11b9836
     </>
 
 

@@ -4,6 +4,7 @@ import DeleteButton from '../components/DeleteButton';
 import SearchClip from '../components/SearchClip';
 import axios from 'axios';
 import { API_IP } from '../assets/constant';
+import { useNavigate } from 'react-router-dom';
 
 type ClipType = {
   clip_id: string;
@@ -13,6 +14,9 @@ type ClipType = {
 };
 
 const HistoryPage: React.FC = () => {
+  const navigate = useNavigate(); // Initialize navigation
+
+
   const [clips, setClips] = useState<ClipType[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -42,6 +46,13 @@ const HistoryPage: React.FC = () => {
 
   const handleView = (clip_id: string) => {
     alert(`Viewing clip with ID: ${clip_id}`);
+
+    navigate(`/viewclip/${clip_id}`)
+    // navigate('/viewclip', { state: { clip_id } });
+
+
+
+
   };
 
   const handleDelete = async (clip_id: string) => {

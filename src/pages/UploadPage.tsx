@@ -76,7 +76,7 @@ const UploadAndDraw: React.FC = () => {
       setCurrentPoints([]);
       setPolygons([]);
       // setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
-      setMarkingValues([]);
+      setMarkingValues([[0,0],[0,0],[0,0],[0,0]]);
 
       // Clear the file input value to allow re-uploading the same file
       e.target.value = '';
@@ -164,7 +164,8 @@ const UploadAndDraw: React.FC = () => {
     // Clear both completed polygons and current points being drawn
     setPolygons([]);
     setCurrentPoints([]);
-    setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
+    // setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
+    setMarkingValues([[0,0],[0,0],[0,0],[0,0]]);
 
     // Clear the canvas
     const canvas = canvasRef.current;
@@ -184,7 +185,7 @@ const UploadAndDraw: React.FC = () => {
     setCurrentPoints([]);
     setPolygons([]);
     // setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
-    setMarkingValues([]);
+    setMarkingValues([[0,0],[0,0],[0,0],[0,0]]);
 
     setVideoDimensions({ width: 0, height: 0 });
   };
@@ -216,7 +217,7 @@ const UploadAndDraw: React.FC = () => {
       ],
       descripton: formData.description
     }
-    // console.log({ data })
+    console.log({ data })
     await axios.post(API_IP + '/uploadClip', data)
       .then(res => {
         console.log({ res })
@@ -293,10 +294,10 @@ const UploadAndDraw: React.FC = () => {
             <div className="input-fields">
               <input type="text" id="clipName" placeholder="Name" value={formData.name} name='name' onChange={handleChange} required />
 
-              <input type="text" id="marking" placeholder="marking (x1,y1)" value={markingValues[0]} readOnly />
-              <input type="text" id="marking2" placeholder="marking (x2,y2)" value={markingValues[1]} readOnly />
-              <input type="text" id="marking3" placeholder="marking (x3,y3)" value={markingValues[2]} readOnly />
-              <input type="text" id="marking4" placeholder="marking (x4,y4)" value={markingValues[3]} readOnly />
+              <input type="text" id="marking" placeholder="marking (x1,y1)" value={`${markingValues[0]}`} readOnly />
+              <input type="text" id="marking2" placeholder="marking (x2,y2)" value={`${markingValues[1]}`} readOnly />
+              <input type="text" id="marking3" placeholder="marking (x3,y3)" value={`${markingValues[2]}`} readOnly />
+              <input type="text" id="marking4" placeholder="marking (x4,y4)" value={`${markingValues[3]}`} readOnly />
 
               <input type="text" id="width" placeholder="width" value={formData.width} name='width' onChange={handleChange} required />
               <input type="text" id="distance" placeholder="distance" value={formData.distance} name='distance' onChange={handleChange} required />

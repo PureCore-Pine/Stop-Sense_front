@@ -4,26 +4,28 @@ import ReactPlayer from "react-player";
 import axios from "axios";
 
 interface ClipData {
-  clipName: string;
-  youtubeUrl: string;
+  clip_id: string;
+  name: string;
+  video_path: string;
   width: number;
   distance: number;
-  conflicts: number;
+  number_conflict: number;
+
   processingTime: string;
   date: string;
-  markingPoints: { x: number; y: number }[];
+  point: { x: number; y: number }[][];
   description: string;
 }
 
 const mockData: ClipData = {
-  clipName: "Example Clip",
-  youtubeUrl: "https://www.youtube.com/watch?v=fXw1PERFGMs",
+  name: "Example Clip",
+  video_path: "https://www.youtube.com/watch?v=fXw1PERFGMs",
   width: 9,
   distance: 200,
-  conflicts: 20,
+  number_conflict: 20,
   processingTime: "56 min.",
   date: "12-12-2025",
-  markingPoints: [
+  point: [
     { x: 23, y: 23 },
     { x: 102, y: 23 },
     { x: 10, y: 400 },
@@ -36,28 +38,32 @@ const ViewClip: React.FC = () => {
   const { clip_id } = useParams();
   const [clipData, setClipData] = useState<ClipData>(mockData);
 
+
+  console.log('>>', clip_id)
+
+
   useEffect(() => {
     if (!clip_id) {
       console.warn("No clip_id provided, using mock data.");
       return;
     }
 
-    axios.get(`https://api.example.com/clipdata/${clip_id}`)
-      .then((response) => {
-        setClipData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching clip data:", error);
-      });
+    // axios.get(`https://api.example.com/clipdata/${clip_id}`)
+    //   .then((response) => {
+    //     setClipData(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching clip data:", error);
+    //   });
   }, [clip_id]);
 
   return (
     <div className="p-8">
-      <h2 className="text-2xl font-bold mb-6">&lt;{clipData.clipName}&gt;</h2>
+      <h2 className="text-2xl font-bold mb-6">&lt;{clipData.name}&gt;</h2>
 
       {/* Video Player */}
       <div className="w-full flex justify-center">
-        <ReactPlayer url={clipData.youtubeUrl} controls width="75%" height="400px" />
+        <ReactPlayer url={clipData.video_path} controls width="75%" height="400px" />
       </div>
 
       {/* ✅ กล่องข้อมูลหลัก */}

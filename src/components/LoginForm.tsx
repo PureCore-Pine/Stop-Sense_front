@@ -4,8 +4,6 @@ import { API_IP, REDCOLOR, WHITECOLOR } from '../assets/constant';
 import { Link, Navigate, redirect } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-
-
 interface FormData {
   username: string;
   password: string;
