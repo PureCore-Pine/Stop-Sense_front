@@ -38,29 +38,18 @@ export default function MyRouter() {
       <Routes>
         <Route element={<ProtectedRoutes />}>
           {/* Pages ที่มี Layout */}
-<<<<<<< HEAD
           <Route path="/" element={<UploadAndDraw />} />
           <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
           <Route path="/history" element={<Layout><HistoryPage /></Layout>} />
           <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
           <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
-=======
-
-          <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/history" element={<Layout><HistoryPage /></Layout>} />
-          <Route path="/upload" element={<Layout><UploadPage /></Layout>} />
->>>>>>> 56ef485 (fig bug)
           <Route path="/viewclip/:clip_id" element={<Layout><ViewClip /></Layout>} />
           {/* หน้า Login และ Register ไม่มี Layout */}
 
         </Route>
 
         <Route path="/register" element={<RegisterPage />} />
-<<<<<<< HEAD
         <Route path="/login" element={<UploadAndDraw />} />
-=======
-        <Route path="/login" element={<Login />} />
->>>>>>> 56ef485 (fig bug)
 
 
       </Routes>

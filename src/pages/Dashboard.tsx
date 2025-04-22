@@ -15,6 +15,7 @@ const Dashboard: React.FC = () => {
   // ✅ Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
+      console.log(user_id)
       try {
         const res = await axios.get(`${API_IP}/dataOverView/${user_id}`);
         console.log("API Response:", res.data);
