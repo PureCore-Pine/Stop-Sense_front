@@ -139,8 +139,10 @@ import ViewButton from '../components/ViewButton';
 import DeleteButton from '../components/DeleteButton';
 import SearchClip from '../components/SearchClip';
 import axios from 'axios';
-import { API_IP } from '../assets/constant';
+import { API_IP, RED_COLOR_50, REDCOLOR, YELLOW_COLOR_50, YELLOWCOLOR } from '../assets/constant';
 import { useNavigate } from 'react-router-dom';
+import { FaCarCrash, FaTrash } from 'react-icons/fa';
+import { IoMdTime } from 'react-icons/io';
 
 type ClipType = {
   clip_id: string;
@@ -208,7 +210,7 @@ const HistoryPage: React.FC = () => {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto">
+        {/* <div className="overflow-x-auto">
           <table className="w-full border-collapse bg-white shadow-md rounded-lg">
             <thead className="bg-red-700 text-white">
               <tr>
@@ -243,7 +245,79 @@ const HistoryPage: React.FC = () => {
               )}
             </tbody>
           </table>
+        </div> */}
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr',
+            gap: '20px',
+            padding: '20px',
+          }}
+        >
+          {filteredClips.length === 0 ? (
+            <div className="text-center p-6 col-span-3">
+              <h1 className="text-2xl font-bold text-gray-500">No data</h1>
+            </div>
+          ) : (
+            filteredClips.map((clip, index) => {
+
+              return (
+                <div
+                  key={index}
+                  style={{
+                    backgroundColor: clip.number_conflict >= 20 ? RED_COLOR_50 : YELLOW_COLOR_50,
+                    borderRadius: '10px',
+                    padding: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    height: '180px',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  {/* Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <h1 style={{ fontWeight: 'bold', fontSize: '20px' }}>{clip.name}</h1>
+                    <button
+                      onClick={() => handleDelete(clip.clip_id)}
+                    >
+                      <FaTrash size={20} />
+                    </button>
+                  </div>
+
+                  {/* Details */}
+                  <div style={{ marginTop: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+                      <FaCarCrash size={18} style={{ marginRight: '8px' }} />
+                      <p>{clip.number_conflict}</p>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <IoMdTime size={18} style={{ marginRight: '8px' }} />
+                      <p>{clip.upload_date}</p>
+                    </div>
+                  </div>
+
+                  {/* Button */}
+                  <button
+                    onClick={() => handleView(clip.clip_id)}
+                    style={{
+                      backgroundColor: clip.number_conflict >= 20 ? REDCOLOR : YELLOWCOLOR,
+                      color: '#fff',
+                      borderRadius: '12px',
+                      padding: '4px 16px',
+                      marginTop: '10px',
+                      alignSelf: 'flex-start',
+                    }}
+                  >
+                    {'View'}
+                  </button>
+                </div>
+              );
+            })
+          )}
         </div>
+
       </div>
     </div>
   );
