@@ -8,5 +8,14 @@
         "Setting": "ตั้งค่า",
         "changeLanguage": "เปลี่ยนภาษา",
         "Logout": "ออกจากระบ"
+    },
+    "dashboard": {
+        "Dashboard":"แดชบอร์ด",
+        "numConflict": "จำนวน Conflict",
+        "times" : "ครั้ง",
+        "numberUsers" : "จำนวนผู้ใช้งานวันนี้",
+        "unitUser": "ราย",
+        "numClips" : "จำนวนคลิปที่อัพโหลด",
+        "unitClip" : "คลิป"
     }
 }

@@ -7,6 +7,15 @@
         "NightMode": "Night mode",
         "Setting": "Setting",
         "changeLanguage": "Change language",
-        "Logout":"Log out"
+        "Logout": "Log out"
+    },
+    "dashboard": {
+        "Dashboard":"Dashboard",
+        "numConflict": "Number of Conflict(s)",
+        "times" : "times",
+        "numberUsers" : "Number of Users",
+        "unitUser": "account(s)",
+        "numClips" : "Number of Clip uploaded",
+        "unitClip" : "clip(s)"
     }
 }

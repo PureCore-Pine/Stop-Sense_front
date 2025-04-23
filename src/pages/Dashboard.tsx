@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import DashboardCard from "../components/DashboardCard";
 import { API_IP } from "../assets/constant";
 
+import { useTranslation } from "react-i18next";
+
 const Dashboard: React.FC = () => {
+  const { t } = useTranslation();
+
   const user_id = localStorage.getItem('user_id');
   console.log('userID:', user_id);
 
@@ -33,21 +37,22 @@ const Dashboard: React.FC = () => {
   // ✅ Use state values in dashboard data
   const dashboardData = [
     {
-      title: "จำนวน Conflict",
+      // title: "จำนวน Conflict",
+      title: t('dashboard.numConflict'),
       value: conflictCount,
-      unit: "ครั้ง",
+      unit: t('dashboard.times'),
       size: "col-span-2 row-span-2"
     },
     {
-      title: "จำนวนผู้ใช้งานวันนี้",
+      title: t('dashboard.numberUsers'),
       value: activeUser,
-      unit: "ราย",
+      unit:  t('dashboard.unitUser'),
       size: "col-span-1 row-span-2"
     },
     {
-      title: "จำนวนคลิปที่อัพโหลด",
+      title: t('dashboard.numClips'),
       value: clipsCount,
-      unit: "คลิป",
+      unit: t('dashboard.unitClip'),
       size: "col-span-full row-span-1"
     }
   ];
@@ -55,7 +60,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="w-full min-h-screen p-6 pt-10 flex justify-center">
       <div className="max-w-screen-lg w-full">
-        <h2 className="text-4xl font-bold mb-6 text-center">Dashboard</h2>
+        <h2 className="text-4xl font-bold mb-6 text-center">{t('dashboard.Dashboard')}</h2>
 
         {/* ✅ ปรับ Grid Layout ให้เต็มพื้นที่ */}
         <div className="grid grid-cols-3 gap-6 auto-rows-fr">
