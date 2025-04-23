@@ -1,0 +1,12 @@
+{
+    "learn": "เรียน react",
+    "sidebar": {
+        "Dashboard": "แดชบอร์ด",
+        "Upload": "อัปโหลด",
+        "History": "ประวัติ",
+        "NightMode": "โหมดมืด",
+        "Setting": "ตั้งค่า",
+        "changeLanguage": "เปลี่ยนภาษา",
+        "Logout": "ออกจากระบ"
+    }
+}

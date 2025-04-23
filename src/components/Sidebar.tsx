@@ -24,15 +24,10 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
   const { t, i18n } = useTranslation();
 
   const [showDrop, setShowDrop] = useState(false);
-  const [language, setLanguage] = useState('en');
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const changeLanguage = (lang: string) => {
-    setLanguage(lang)
-    alert(`change land success ${lang}`)
-  }
 
   const handleLogout = async () => {
     const user_id = localStorage.getItem("user_id");
@@ -222,7 +217,8 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
         <span
           className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}
         >
-          Log out
+          {t('sidebar.Logout')}
+          {/* Log out */}
         </span>
       </button>
     </div>

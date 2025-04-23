@@ -1,0 +1,12 @@
+{
+    "learn": "Learn React",
+    "sidebar": {
+        "Dashboard": "Dashboard",
+        "Upload": "Upload",
+        "History": "History",
+        "NightMode": "Night mode",
+        "Setting": "Setting",
+        "changeLanguage": "Change language",
+        "Logout":"Log out"
+    }
+}
