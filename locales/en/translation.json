@@ -10,13 +10,13 @@
         "Logout": "Log out"
     },
     "dashboard": {
-        "Dashboard":"Dashboard",
+        "Dashboard": "Dashboard",
         "numConflict": "Number of Conflict(s)",
-        "times" : "times",
-        "numberUsers" : "Number of Users",
+        "times": "times",
+        "numberUsers": "Number of Users",
         "unitUser": "account(s)",
-        "numClips" : "Number of Clip uploaded",
-        "unitClip" : "clip(s)"
+        "numClips": "Number of Clip uploaded",
+        "unitClip": "clip(s)"
     },
     "upload": {
         "upload": "Upload",
@@ -26,16 +26,33 @@
         "cancel": "Cancel",
         "again": "Again",
         "calculate": "Calculate",
-        "clear":"Clear",
-        "name":"Clip Name",
-        "description":"description",
-        "width":"width",
-        "distance":"distance"
+        "clear": "Clear",
+        "name": "Clip Name",
+        "description": "description",
+        "width": "width",
+        "distance": "distance"
     },
-    "history":{
-        "name":"history",
+    "history": {
+        "name": "history",
         "search": "search clips",
         "view": "view",
         "noData": "No data"
+    },
+    "view": {
+        "width": "Width",
+        "distance": "Distance",
+        "unit": "meter",
+        "conflicts": "Conflicts",
+        "markPoint": "Marking Points",
+        "point": "point",
+        "uploadDate": "Upload date",
+        "description": "description"
+    },
+    "login": {
+        "welcome": "Your Welcome",
+        "username": "Username or Email",
+        "password": "password",
+        "signin": "Sign in",
+        "register": "Register"
     }
 }

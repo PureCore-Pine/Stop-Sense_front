@@ -10,13 +10,13 @@
         "Logout": "ออกจากระบ"
     },
     "dashboard": {
-        "Dashboard":"แดชบอร์ด",
+        "Dashboard": "แดชบอร์ด",
         "numConflict": "จำนวน Conflict",
-        "times" : "ครั้ง",
-        "numberUsers" : "จำนวนผู้ใช้งานวันนี้",
+        "times": "ครั้ง",
+        "numberUsers": "จำนวนผู้ใช้งานวันนี้",
         "unitUser": "ราย",
-        "numClips" : "จำนวนคลิปที่อัพโหลด",
-        "unitClip" : "คลิป"
+        "numClips": "จำนวนคลิปที่อัพโหลด",
+        "unitClip": "คลิป"
     },
     "upload": {
         "upload": "อัปโหลด",
@@ -26,16 +26,33 @@
         "cancel": "ยกเลิก",
         "again": "อัปโหลดใหม่",
         "calculate": "เริ่มคำนวน",
-        "clear":"ล้าง",
-        "name":"ชื่อคลิป",
-        "description":"คำอธิบาย",
-        "width":"ความกว้าง",
-        "distance":"ความยาว"
+        "clear": "ล้าง",
+        "name": "ชื่อคลิป",
+        "description": "คำอธิบาย",
+        "width": "ความกว้าง",
+        "distance": "ความยาว"
     },
-    "history":{
-        "name":"ประวัติ",
+    "history": {
+        "name": "ประวัติ",
         "search": "ค้นหา",
         "view": "เรียกดู",
         "noData": "ไม่พบข้อมูล"
+    },
+    "view": {
+        "width": "ความกว้าง",
+        "distance": "ความยาว",
+        "unit": "เมตร",
+        "conflicts": "Conflicts",
+        "markPoint": "จุดอ้างอิง",
+        "point": "จุดที่",
+        "uploadDate": "วันที่อัปโหลด",
+        "description": "คำอธิบาย"
+    },
+    "login": {
+        "welcome": "ยินดีต้อนรับ",
+        "username": "ชื่อผู้ใช้/อีเมล",
+        "password": "รหัสผ่าน",
+        "signin": "เข้าสู่ระบบ",
+        "register": "ลงทะเบียน"
     }
 }
