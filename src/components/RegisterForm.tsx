@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { API_IP } from '../assets/constant';
 import axios from 'axios';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from "react-i18next";
+
 
 interface FormData {
   email: string;
@@ -11,6 +14,9 @@ interface FormData {
 }
 
 const RegisterForm: React.FC = () => {
+
+  const { t, i18n } = useTranslation();
+
   const navigate = useNavigate(); // Initialize navigation
 
   const [formData, setFormData] = useState<FormData>({
@@ -35,9 +41,7 @@ const RegisterForm: React.FC = () => {
       username: formData.username,
       password: formData.password,
       confirmPassword: formData.confirmPassword
-
     }
-
 
     await axios.post(API_IP + '/register', data)
       .then(res => {
@@ -58,7 +62,10 @@ const RegisterForm: React.FC = () => {
 
   return (
     <div className="w-140 bg-[#F5E8D9] rounded-3xl shadow-lg p-20 opacity-95">
-      <h2 className="text-4xl text-center text-[#E5B85C] font-bold mb-8">Register</h2>
+      <h2 className="text-4xl text-center text-[#E5B85C] font-bold mb-8">
+        {/* Register */}
+        {t('register.register')}
+        </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -69,7 +76,8 @@ const RegisterForm: React.FC = () => {
             onChange={handleChange}
             className="w-full p-2 px-6 mt-5 rounded-lg shadow-sm bg-white text-gray-700 text-lg focus:outline-none focus:ring-2 focus:ring-[#E5B85C] "
             required
-            placeholder="Email"
+            // placeholder="Email"
+            placeholder={t('register.email')}
           />
         </div>
 
@@ -81,7 +89,8 @@ const RegisterForm: React.FC = () => {
             onChange={handleChange}
             className="w-full p-2 px-6 mt-1 rounded-lg shadow-sm bg-white text-gray-700 text-lg focus:outline-none focus:ring-2 focus:ring-[#E5B85C]"
             required
-            placeholder="Username"
+            // placeholder="Username"
+            placeholder={t('register.username')}
           />
         </div>
 
@@ -93,7 +102,8 @@ const RegisterForm: React.FC = () => {
             onChange={handleChange}
             className="w-full p-2 px-6 mt-1 rounded-lg shadow-sm bg-white text-gray-700 text-lg focus:outline-none focus:ring-2 focus:ring-[#E5B85C]"
             required
-            placeholder="Password"
+            // placeholder="Password"
+            placeholder={t('register.password')}
           />
         </div>
 
@@ -105,12 +115,14 @@ const RegisterForm: React.FC = () => {
             onChange={handleChange}
             className="w-full p-2 px-6 mt-1 rounded-lg shadow-sm bg-white text-gray-700 text-lg focus:outline-none focus:ring-2 focus:ring-[#E5B85C]"
             required
-            placeholder="Confirm Password"
+            // placeholder="Confirm Password"
+            placeholder={t('register.confirmPass')}
           />
         </div>
 
         <button type="submit" className="w-full py-4 mt-6 text-white bg-[#E5B85C] text-lg rounded-full hover:bg-[#d3a14e] transition duration-300">
-          Sign up
+          {/* Sign up */}
+          {t('register.signup')}
         </button>
       </form>
     </div>

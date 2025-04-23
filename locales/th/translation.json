@@ -54,5 +54,14 @@
         "password": "รหัสผ่าน",
         "signin": "เข้าสู่ระบบ",
         "register": "ลงทะเบียน"
+    },
+    "register": {
+        "register":"ลงทะเบียน",
+        "email": "อีเมล",
+        "username": "ชื่อผู้ใช้",
+        "password": "รหัสผ่าน",
+        "confirmPass": "ยืนยันรหัสผ่าน",
+        "signup":"ลงทะเบียน",
+        "login": "เข้าสู่ระบบ"
     }
 }

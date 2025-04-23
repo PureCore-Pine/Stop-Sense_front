@@ -54,5 +54,14 @@
         "password": "password",
         "signin": "Sign in",
         "register": "Register"
+    },
+    "register": {
+        "register":"Register",
+        "email": "Email",
+        "username": "Username",
+        "password": "Password",
+        "confirmPass": "Confirm Password",
+        "signup":"Sign up",
+        "login": "Login"
     }
 }
