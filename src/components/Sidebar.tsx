@@ -7,45 +7,25 @@ import { navItem } from "../assets/dataSide";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
+import { IoMdSettings } from "react-icons/io";
 
 
 const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
   isExpanded,
   toggleSidebar,
 }) => {
+  const [showDrop, setShowDrop] = useState(false);
+  const [language, setLanguage] = useState('en');
+
   const location = useLocation();
   const navigate = useNavigate(); // Initialize navigation
 
-
-  // ✅ Night Mode (ถูกคอมเมนต์ไว้เพื่อเปิดใช้งานภายหลัง)
-  /*
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("darkMode") === "enabled";
-  });
-
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem("darkMode", newMode ? "enabled" : "disabled");
-
-    if (newMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-  */
+  const changeLanguage = (lang: string) => {
+    setLanguage(lang)
+    alert(`change land success ${lang}`)
+  }
 
   const handleLogout = async () => {
-
     const user_id = localStorage.getItem('user_id');
 
     const data = {
@@ -105,24 +85,66 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
           </Link>
         ))}
 
-        {/* ✅ ปุ่มเปิด-ปิด Night Mode (ถูกคอมเมนต์ไว้) */}
-        {/*
-        <li
-          className={`flex items-center p-3 rounded-lg hover:bg-gray-300 cursor-pointer ${
-            isExpanded ? "" : "justify-center"
-          }`}
-          onClick={toggleDarkMode}
+        <div
+          className={`items-center rounded-lg ${isExpanded ? "" : "justify-center"} mt-10 `}
         >
-          {darkMode ? <HiSun size={24} className="text-yellow-500" /> : <HiMoon size={24} />}
-          <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>
-            {darkMode ? "Light Mode" : "Night Mode"}
-          </span>
-        </li>
-        */}
+          <button
+            className="hover:bg-gray-300 flex items-center p-3 rounded-lg w-full"
+            onClick={() => { isExpanded && setShowDrop(!showDrop) }}
+          >
+            <div
+              className={isExpanded ? "flex items-center w-full" : ""}
+            >
+              <IoMdSettings size={32} />
+              <span
+                className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}
+              >
+                {'Setting'}
+              </span>
+            </div>
+          </button>
+
+          {showDrop &&
+            <div
+              className="dropdown-content ml-5"
+            >
+              <p>change language</p>
+
+              <div
+                style={{ marginTop: '4px', marginLeft: '10px' }}
+              >
+                <div style={{ display: 'flex', marginRight: '2' }}>
+                  <img src="../../public/image/TH_Flag.png" width={20}
+                    style={{ marginRight: '4px' }}
+                  />
+                  <button onClick={() => changeLanguage('th')}>
+                    <p style={{ fontWeight: language == 'th' ? 'bold' : 'normal' }}>
+                      {'TH'}
+                    </p>
+                  </button>
+                </div>
+
+                <div style={{ display: 'flex', marginRight: '2' }}>
+                  <img src="../../public/image/ENG_Flag.png" width={20}
+                    style={{ marginRight: '4px' }}
+                  />
+                  <button onClick={() => changeLanguage('en')}>
+                    <p style={{ fontWeight: language == 'en' ? 'bold' : 'normal' }}>
+                      {'EN'}
+                    </p>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          }
+        </div>
+
+
       </ul>
 
-      {/* ปุ่ม Log out */}
 
+      {/* ปุ่ม Log out */}
       <button onClick={() => handleLogout()} className={`bg-[${REDCOLOR}] text-white w-full py-3 flex items-center justify-center`}>
         <FiLogOut size={24} />
         <span className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}>

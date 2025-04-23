@@ -2,6 +2,7 @@ import { MdDashboard, MdOutlineFileUpload } from "react-icons/md";
 import { FaHistory,FaChartPie } from "react-icons/fa";
 
 import { ReactNode } from "react";
+import { IoMdSettings } from "react-icons/io";
 
 interface NavItem {
   id: number;
@@ -29,10 +30,10 @@ export const navItem: NavItem[] = [
     title: 'History',
     path: '/history',
   },
-//   {
-//     id: 4,
-//     icon: <IoIosLogOut />,
-//     title: 'Logout',
-//     path: '/login',
-//   },
+  // {
+  //   id: 4,
+  //   icon: <IoMdSettings size={32} style={{padding: '4'}}/>,
+  //   title: 'Setting',
+  //   path: '/',
+  // },
 ];
