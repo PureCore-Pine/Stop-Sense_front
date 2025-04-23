@@ -63,27 +63,25 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
           <Link
             to={item.path}
             key={item.id}
-            className={`flex items-center p-3 rounded-lg transition-all ${
-              isExpanded ? "" : "justify-center"
-            }`}
+            className={`flex items-center p-3 rounded-lg transition-all ${isExpanded ? "" : "justify-center"
+              }`}
             style={
               location.pathname === item.path
                 ? {
-                    backgroundColor: "var(--active-bg)",
-                    color: "var(--active-text)",
-                  }
+                  backgroundColor: "var(--active-bg)",
+                  color: "var(--active-text)",
+                }
                 : {
-                    backgroundColor: "transparent",
-                    color: "var(--sidebar-text)",
-                  }
+                  backgroundColor: "transparent",
+                  color: "var(--sidebar-text)",
+                }
             }
           >
             <li className={isExpanded ? "flex items-center w-full" : ""}>
               {item.icon}
               <span
-                className={`ml-3 transition-all ${
-                  isExpanded ? "block" : "hidden"
-                }`}
+                className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"
+                  }`}
               >
                 {item.title}
               </span>
@@ -95,9 +93,8 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
         <li>
           <button
             onClick={toggleDarkMode}
-            className={`w-full px-4 py-3 hover:opacity-80 transition-all ${
-              isExpanded ? "flex items-center" : "justify-center flex"
-            }`}
+            className={`w-full px-4 py-3 hover:opacity-80 transition-all ${isExpanded ? "flex items-center" : "justify-center flex"
+              }`}
             style={{
               backgroundColor: "transparent",
               color: "var(--sidebar-text)",
@@ -132,31 +129,34 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
 
           {showDrop &&
             <div
-              className="dropdown-content ml-5"
+              // className={`dropdown-content ${isExpanded ? 'ml-5' : ''}`}
+              className={`ml-5 ${isExpanded ? "block" : ""}`}
             >
-              <p>change language</p>
+              {isExpanded &&
+                <p>change language</p>
+              }
 
               <div
-                style={{ marginTop: '4px', marginLeft: '10px' }}
+                style={{ marginTop: '4px', marginLeft: isExpanded ? '10px' : '0' }}
               >
-                <div style={{ display: 'flex', marginRight: '2' }}>
+                <div style={{ display: 'flex', marginRight: isExpanded ? '2' : '0' }}>
                   <img src="../../public/image/TH_Flag.png" width={20}
                     style={{ marginRight: '4px' }}
                   />
                   <button onClick={() => changeLanguage('th')}>
                     <p style={{ fontWeight: language == 'th' ? 'bold' : 'normal' }}>
-                      {'TH'}
+                      {isExpanded && 'TH'}
                     </p>
                   </button>
                 </div>
 
-                <div style={{ display: 'flex', marginRight: '2' }}>
+                <div style={{ display: 'flex', marginRight: isExpanded ? '2' : '0' }}>
                   <img src="../../public/image/ENG_Flag.png" width={20}
                     style={{ marginRight: '4px' }}
                   />
                   <button onClick={() => changeLanguage('en')}>
                     <p style={{ fontWeight: language == 'en' ? 'bold' : 'normal' }}>
-                      {'EN'}
+                      {isExpanded && 'EN'}
                     </p>
                   </button>
                 </div>
@@ -190,4 +190,3 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
 };
 
 export default Sidebar;
-  
