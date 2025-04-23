@@ -17,5 +17,25 @@
         "unitUser": "account(s)",
         "numClips" : "Number of Clip uploaded",
         "unitClip" : "clip(s)"
+    },
+    "upload": {
+        "upload": "Upload",
+        "dropZone": "Drop video files here",
+        "browse": "Browse file",
+        "drawPolygons": "Draw Polygons on Video",
+        "cancel": "Cancel",
+        "again": "Again",
+        "calculate": "Calculate",
+        "clear":"Clear",
+        "name":"Clip Name",
+        "description":"description",
+        "width":"width",
+        "distance":"distance"
+    },
+    "history":{
+        "name":"history",
+        "search": "search clips",
+        "view": "view",
+        "noData": "No data"
     }
 }

@@ -17,5 +17,25 @@
         "unitUser": "ราย",
         "numClips" : "จำนวนคลิปที่อัพโหลด",
         "unitClip" : "คลิป"
+    },
+    "upload": {
+        "upload": "อัปโหลด",
+        "dropZone": "พื้นที่อัปโหลดคลิป",
+        "browse": "ค้นหาไฟล์",
+        "drawPolygons": "ตีเส้นพื้นที่",
+        "cancel": "ยกเลิก",
+        "again": "อัปโหลดใหม่",
+        "calculate": "เริ่มคำนวน",
+        "clear":"ล้าง",
+        "name":"ชื่อคลิป",
+        "description":"คำอธิบาย",
+        "width":"ความกว้าง",
+        "distance":"ความยาว"
+    },
+    "history":{
+        "name":"ประวัติ",
+        "search": "ค้นหา",
+        "view": "เรียกดู",
+        "noData": "ไม่พบข้อมูล"
     }
 }

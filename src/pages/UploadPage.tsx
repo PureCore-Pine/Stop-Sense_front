@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-
 import { useNavigate } from 'react-router-dom';
-
-
-import '../styles/UploadPage.css'
 import axios from 'axios';
 import { API_IP } from '../assets/constant';
+import '../styles/UploadPage.css'
+
+import { useTranslation } from "react-i18next";
 
 
 interface Point {
@@ -25,6 +24,8 @@ interface FormData {
 }
 
 const UploadAndDraw: React.FC = () => {
+  const { t, i18n } = useTranslation();
+
   const navigate = useNavigate(); // Initialize navigation
   const user_id = localStorage.getItem('user_id');
 
@@ -76,7 +77,7 @@ const UploadAndDraw: React.FC = () => {
       setCurrentPoints([]);
       setPolygons([]);
       // setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
-      setMarkingValues([[0,0],[0,0],[0,0],[0,0]]);
+      setMarkingValues([[0, 0], [0, 0], [0, 0], [0, 0]]);
 
       // Clear the file input value to allow re-uploading the same file
       e.target.value = '';
@@ -165,7 +166,7 @@ const UploadAndDraw: React.FC = () => {
     setPolygons([]);
     setCurrentPoints([]);
     // setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
-    setMarkingValues([[0,0],[0,0],[0,0],[0,0]]);
+    setMarkingValues([[0, 0], [0, 0], [0, 0], [0, 0]]);
 
     // Clear the canvas
     const canvas = canvasRef.current;
@@ -185,7 +186,7 @@ const UploadAndDraw: React.FC = () => {
     setCurrentPoints([]);
     setPolygons([]);
     // setMarkingValues(["x1,y1 (0,0)", "x2,y2 (0,0)", "x3,y3 (0,0)", "x4,y4 (0,0)"]);
-    setMarkingValues([[0,0],[0,0],[0,0],[0,0]]);
+    setMarkingValues([[0, 0], [0, 0], [0, 0], [0, 0]]);
 
     setVideoDimensions({ width: 0, height: 0 });
   };
@@ -224,7 +225,7 @@ const UploadAndDraw: React.FC = () => {
         alert(res?.data.message || 'Uploaded')
       })
       .catch(err => {
-        console.warn({err})
+        console.warn({ err })
         alert(err.response?.data.message)
       })
   }
@@ -243,12 +244,19 @@ const UploadAndDraw: React.FC = () => {
       {!videoUrl && (
         <div className="container" id="uploadContainer">
           <div className="header">
-          <h1 className="text-xl font-semibold">Upload</h1>
+            <h1 className="text-xl font-semibold">
+              {/* Upload */}
+              {t('upload.upload')}
+            </h1>
           </div>
           <div className="upload-box" id="uploadBox">
-            <p>Drag&Drop video files here</p>
+            <p>
+              {/* Drag&Drop video files here */}
+              {t('upload.dropZone')}
+            </p>
             <button className="browse-button" onClick={triggerUpload}>
-              Browse Files
+              {/* Browse Files */}
+              {t('upload.browse')}
             </button>
           </div>
         </div>
@@ -256,10 +264,19 @@ const UploadAndDraw: React.FC = () => {
 
       {videoUrl && (
         <div className="container">
-          <h1>Draw Polygons on Video</h1>
+          <h1>
+            {/* Draw Polygons on Video */}
+            {t('upload.drawPolygons')}
+          </h1>
           <div className="upload-buttons">
-            <button className="cancel" onClick={resetUpload}>Cancel</button>
-            <button className="upload-again" onClick={triggerUpload}>Upload Again</button>
+            <button className="cancel" onClick={resetUpload}>
+              {/* Cancel */}
+              {t('upload.cancel')}
+            </button>
+            <button className="upload-again" onClick={triggerUpload}>
+              {/* Upload Again */}
+              {t('upload.again')}
+            </button>
           </div>
 
           <div style={{ position: 'relative', marginTop: '10px' }}>
@@ -286,26 +303,34 @@ const UploadAndDraw: React.FC = () => {
           </div>
 
           <div className="upload-buttons">
-            <button className="calculate" onClick={handleCalculate}>Calculate</button>
-            <button className="clear" onClick={handleClearDrawing}>Clear Drawing</button>
+            <button className="calculate" onClick={handleCalculate}>
+              {/* Calculate */}
+              {t('upload.calculate')}
+
+              </button>
+            <button className="clear" onClick={handleClearDrawing}>
+              {/* Clear Drawing */}
+              {t('upload.clear')}
+
+              </button>
           </div>
 
           <div className="form">
             <div className="input-fields">
-              <input type="text" id="clipName" placeholder="Name" value={formData.name} name='name' onChange={handleChange} required />
+              <input type="text" id="clipName" placeholder={t('upload.name')} value={formData.name} name='name' onChange={handleChange} required />
 
               <input type="text" id="marking" placeholder="marking (x1,y1)" value={`${markingValues[0]}`} readOnly />
               <input type="text" id="marking2" placeholder="marking (x2,y2)" value={`${markingValues[1]}`} readOnly />
               <input type="text" id="marking3" placeholder="marking (x3,y3)" value={`${markingValues[2]}`} readOnly />
               <input type="text" id="marking4" placeholder="marking (x4,y4)" value={`${markingValues[3]}`} readOnly />
 
-              <input type="text" id="width" placeholder="width" value={formData.width} name='width' onChange={handleChange} required />
-              <input type="text" id="distance" placeholder="distance" value={formData.distance} name='distance' onChange={handleChange} required />
+              <input type="text" id="width" placeholder={t('upload.width')} value={formData.width == 0 ? '' : formData.width} name='width' onChange={handleChange} required />
+              <input type="text" id="distance" placeholder={t('upload.distance')} value={formData.distance == 0 ? '' : formData.distance} name='distance' onChange={handleChange} required />
             </div>
 
             <textarea
               id="description"
-              placeholder="description"
+              placeholder={t('upload.description')}
               value={formData.description}
               name="description"
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}>

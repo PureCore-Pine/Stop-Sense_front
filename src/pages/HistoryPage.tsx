@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import ViewButton from '../components/ViewButton';
-import DeleteButton from '../components/DeleteButton';
 import SearchClip from '../components/SearchClip';
 import axios from 'axios';
 import { API_IP, REDCOLOR, RED_COLOR_50, YELLOWCOLOR, YELLOW_COLOR_50 } from '../assets/constant';
 import { useNavigate } from 'react-router-dom';
 import { FaCarCrash, FaTrash } from 'react-icons/fa';
 import { IoMdTime } from 'react-icons/io';
+
+
+import { useTranslation } from "react-i18next";
 
 type ClipType = {
   clip_id: string;
@@ -16,6 +17,8 @@ type ClipType = {
 };
 
 const HistoryPage: React.FC = () => {
+  const { t, i18n } = useTranslation();
+
   const navigate = useNavigate();
   const [clips, setClips] = useState<ClipType[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -68,7 +71,10 @@ const HistoryPage: React.FC = () => {
       <div className="w-full max-w-screen-2xl p-6 rounded-lg shadow-lg" style={{ backgroundColor: 'var(--card-bg)', color: 'var(--card-text)' }}>
         {/* Title and Search Box */}
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold">History</h1>
+          <h1 className="text-3xl font-bold">
+            {/* History */}
+            {t('history.name')}
+            </h1>
           <SearchClip searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </div>
 
@@ -83,7 +89,10 @@ const HistoryPage: React.FC = () => {
         >
           {filteredClips.length === 0 ? (
             <div className="text-center p-6 col-span-3">
-              <h1 className="text-2xl font-bold text-gray-500">No data</h1>
+              <h1 className="text-2xl font-bold text-gray-500">
+                {/* No data */}
+                {t('history.noData')}
+                </h1>
             </div>
           ) : (
             filteredClips.map((clip, index) => {
@@ -137,7 +146,8 @@ const HistoryPage: React.FC = () => {
                       alignSelf: 'flex-start',
                     }}
                   >
-                    View
+                    {/* View */}
+                    {t('history.view')}
                   </button>
                 </div>
               );
