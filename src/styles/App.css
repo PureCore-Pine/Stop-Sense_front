@@ -1,15 +1,37 @@
 @import "tailwindcss";
 
-
-/* ตั้งค่าพื้นหลัง Dark Mode */
 :root {
   --bg-color: #EEEEEE;
-  --text-color: #414141;
+  --text-color: #212121;
+  --card-bg: #ffffff;
+  --card-text: #111111;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #000000;
+  --active-bg: #A02A2E;
+  --active-text: #ffffff;
+  --button-cancel-bg: #8C181C;
+  --button-cancel-text: #ffffff;
+  --button-uploadagain-bg: #ffffff;
+  --button-uploadagain-text: #8C181C;
+  --view-bg : #D9D9D9;
+  --view-text: #000000;
 }
 
 .dark {
-  --bg-color: #414141;
-  --text-color: #EEEEEE;
+  --bg-color: #303447;
+  --text-color: #f1f1f1;
+  --card-bg: #414661;
+  --card-text: #ffffff;
+  --sidebar-bg: #303447;
+  --sidebar-text: #f1f1f1;
+  --active-bg: #414661;
+  --active-text: #ffffff;
+  --button-cancel-bg: #427074;
+  --button-cancel-text: #ffffff;
+  --button-uploadagain-bg: #ffffff;
+  --button-uploadagain-text: #000000;
+  --view-bg : #414661;
+  --view-text: #ffffff;
 }
 
 body {

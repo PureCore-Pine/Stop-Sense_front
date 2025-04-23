@@ -243,7 +243,7 @@ const UploadAndDraw: React.FC = () => {
       {!videoUrl && (
         <div className="container" id="uploadContainer">
           <div className="header">
-            <h1>Upload</h1>
+          <h1 className="text-xl font-semibold">Upload</h1>
           </div>
           <div className="upload-box" id="uploadBox">
             <p>Drag&Drop video files here</p>
