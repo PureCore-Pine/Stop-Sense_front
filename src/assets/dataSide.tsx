@@ -1,8 +1,8 @@
-import { MdDashboard, MdOutlineFileUpload } from "react-icons/md";
+import { MdOutlineFileUpload } from "react-icons/md";
 import { FaHistory,FaChartPie } from "react-icons/fa";
 
 import { ReactNode } from "react";
-import { IoMdSettings } from "react-icons/io";
+
 
 interface NavItem {
   id: number;

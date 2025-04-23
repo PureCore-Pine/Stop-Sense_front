@@ -6,10 +6,23 @@ import { API_IP } from "../assets/constant";
 import { navItem } from "../assets/dataSide";
 import { IoMdSettings } from "react-icons/io";
 
+import { useTranslation } from "react-i18next";
+
+const lngs: { [key: string]: { nativeName: string } } = {
+  // en: { nativeName: "English" },
+  // th: { nativeName: "Thai" },
+  en: { nativeName: "EN" },
+  th: { nativeName: "TH" },
+};
+
+
 const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
   isExpanded,
   toggleSidebar,
 }) => {
+
+  const { t, i18n } = useTranslation();
+
   const [showDrop, setShowDrop] = useState(false);
   const [language, setLanguage] = useState('en');
 
@@ -83,7 +96,8 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
                 className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"
                   }`}
               >
-                {item.title}
+                {t(`sidebar.${item.title}`)}
+                {/* {item.title} */}
               </span>
             </li>
           </Link>
@@ -102,7 +116,8 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
           >
             <span>🌓</span>
             <span className={`ml-3 ${isExpanded ? "block" : "hidden"}`}>
-              Night mode
+              {t(`sidebar.NightMode`)}
+              {/* {'Night mode'} */}
             </span>
           </button>
         </li>
@@ -122,7 +137,8 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
               <span
                 className={`ml-3 transition-all ${isExpanded ? "block" : "hidden"}`}
               >
-                {'Setting'}
+                {t('sidebar.Setting')}
+                {/* {'Setting'} */}
               </span>
             </div>
           </button>
@@ -133,13 +149,38 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
               className={`ml-5 ${isExpanded ? "block" : ""}`}
             >
               {isExpanded &&
-                <p>change language</p>
+                <p>
+                  {t(`sidebar.changeLanguage`)}
+                  {/* {'change language'} */}
+                </p>
               }
 
               <div
                 style={{ marginTop: '4px', marginLeft: isExpanded ? '10px' : '0' }}
               >
-                <div style={{ display: 'flex', marginRight: isExpanded ? '2' : '0' }}>
+
+                {Object.keys(lngs).map((lng) => {
+                  return (
+                    // <button type="submit" key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng} >
+                    //   {lngs[lng].nativeName}
+                    // </button>
+
+                    <div style={{ display: 'flex', marginRight: isExpanded ? '2' : '0' }}>
+                      <img src={`../../public/image/${lngs[lng].nativeName}_Flag.png`} width={20}
+                        style={{ marginRight: '4px' }}
+                      />
+                      {/* <button onClick={() => changeLanguage(lng)}> */}
+                      <button onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>
+                        <p style={{ fontWeight: i18n.language == lng ? 'bold' : 'normal' }}>
+                          {isExpanded && lngs[lng].nativeName}
+
+                        </p>
+                      </button>
+                    </div>
+
+                  )
+                })}
+                {/* <div style={{ display: 'flex', marginRight: isExpanded ? '2' : '0' }}>
                   <img src="../../public/image/TH_Flag.png" width={20}
                     style={{ marginRight: '4px' }}
                   />
@@ -159,9 +200,8 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
                       {isExpanded && 'EN'}
                     </p>
                   </button>
-                </div>
+                </div> */}
               </div>
-
             </div>
           }
         </div>
