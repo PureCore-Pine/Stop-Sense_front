@@ -8,7 +8,7 @@ type SearchClipProps = {
 };
 
 const SearchClip: React.FC<SearchClipProps> = ({ searchTerm, setSearchTerm }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="flex justify-end">
       <input

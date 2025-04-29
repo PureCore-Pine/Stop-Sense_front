@@ -15,7 +15,7 @@ interface FormData {
 
 const RegisterForm: React.FC = () => {
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const navigate = useNavigate(); // Initialize navigation
 

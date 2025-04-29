@@ -48,7 +48,8 @@ const ViewClip: React.FC = () => {
     const fetchData = async () => {
       await axios.get(API_IP + `/getClipID/${clip_id}`)
         .then(res => {
-          setClipData(res.data)
+          console.log(res.data.clip)
+          setClipData(res.data.clip)
         })
         .catch(err => {
           console.warn({ err })
@@ -59,14 +60,6 @@ const ViewClip: React.FC = () => {
 
   return (
     <div>
-      {/* ปุ่ม Back วางนอกกล่อง และอยู่เหนือ sidebar */}
-      <button
-        onClick={() => navigate("/history")}
-        className="absolute top-6 left-4 text-xl hover:opacity-70 z-50"
-        title="Back to History"
-      >
-        <IoMdArrowRoundBack size={28} />
-      </button>
       <div
         className="justify-start "
         style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
@@ -77,9 +70,10 @@ const ViewClip: React.FC = () => {
           style={{ backgroundColor: 'var(--view-bg)', color: 'var(--text-color)' }}>
           <h2 className="text-2xl font-bold mb-6">{clipData.name}</h2>
           <div className="w-full flex justify-center">
-            <ReactPlayer url={clipData.video_path} controls width="75%" height="400px" />
-          </div>
+            {/* <ReactPlayer url={clipData.video_path} controls width="75%" height="400px" /> */}
+            <ReactPlayer url="/video/result/Bake@DomeV31.mp4" controls width="75%" height="400px" />
 
+          </div>
           <div className="mt-6 p-4 rounded-lg shadow" style={{ backgroundColor: 'var(--bg-color)' }}>
             <div className="grid grid-cols-3 gap-4">
               <div className="pl-6">

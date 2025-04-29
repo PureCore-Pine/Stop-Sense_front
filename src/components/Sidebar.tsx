@@ -161,7 +161,7 @@ const Sidebar: React.FC<{ isExpanded: boolean; toggleSidebar: () => void }> = ({
                     // </button>
 
                     <div style={{ display: 'flex', marginRight: isExpanded ? '2' : '0' }}>
-                      <img src={`../../public/image/${lngs[lng].nativeName}_Flag.png`} width={20}
+                      <img src={`../../image/${lngs[lng].nativeName}_Flag.png`} width={20}
                         style={{ marginRight: '4px' }}
                       />
                       {/* <button onClick={() => changeLanguage(lng)}> */}
